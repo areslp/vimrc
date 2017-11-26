@@ -6,16 +6,14 @@ Bundle "gmarik/vundle"
 Bundle "scrooloose/nerdtree"
 Bundle "pix/vim-taglist"
 Bundle "majutsushi/tagbar"
-Bundle "c9s/bufexplorer"
-Bundle "vim-scripts/TabBar"
 Bundle "scrooloose/nerdcommenter"
-" Bundle "vim-scripts/a.vim"
 Bundle "vim-scripts/c.vim"
 Bundle "vim-scripts/peaksea"
 Bundle "Valloric/YouCompleteMe"
 Bundle "vim-scripts/sudo.vim"
 Bundle "Chiel92/vim-autoformat"
 Bundle "vim-scripts/DoxygenToolkit.vim"
+Bundle "Shougo/denite.nvim"
 filetype indent plugin on
 
 set history=700
@@ -420,3 +418,5 @@ set autoindent
 nmap <leader>d :Dox<cr>
 
 set cc=80
+
+map <leader>b :Denite buffer<cr>
