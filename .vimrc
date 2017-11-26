@@ -4,7 +4,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 Bundle "gmarik/vundle"
 Bundle "scrooloose/nerdtree"
-Bundle "pix/vim-taglist"
 Bundle "majutsushi/tagbar"
 Bundle "scrooloose/nerdcommenter"
 Bundle "vim-scripts/c.vim"
