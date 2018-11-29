@@ -1,42 +1,67 @@
 #!/bin/bash
+
+# check input parameters
+if [ "$#" -ne 2 ]; then
+    echo "illegal number of parameters !"
+    echo "sh update.sh [branch:parking_dev_v2] [server type:0(block),1(root)]"
+    exit -1
+fi
+
+branch=$1
+type=$2
+echo "branch : " $branch
+echo "type : " $type
+
 set -e
 base=`pwd`
 echo $base
 
-install_projects=(holo_base holo_3d holo_sensors holo_map holo_data_provider holo_localization holo_calibration)
+block_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_calibration holo_localization holo_perception)
+root_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_parking holo_control holo_gateway holo_perception holo_planning_server)
 
-for project in ${install_projects[@]}
-do
-    echo "=======================> $project <====================="
-    set +e
-    cd $project && git checkout master && git pull && mkdir build 
-    set -e
-    # cd build && cmake .. && make && make test && sudo make install
-    cd build && cmake .. && make && sudo make install
-    cd $base
-done
+# set target projects
+if [ $type -eq 0 ]; then
+    projects=${block_projects[@]}
+else
+    projects=${root_projects[@]}
+fi
 
-projects=(holo_planning holo_cmw holo_vis holo_simulator)
+echo "projects : " $projects
 
+# update target projects
 for project in ${projects[@]}
 do
     echo "=======================> $project <====================="
-    set +e
-    cd $project && git checkout master && git pull && mkdir build 
     set -e
-    # cd build && cmake .. && make && make test
-    cd build && cmake .. && make
+    cd $project
+    git fetch
+    git checkout $branch
+    git reset --hard origin/$branch
+    git pull
+    set +e
+    mkdir build
+    set -e
+    cd build
+    cmake ..
+    make -j4
+    sudo make install
     cd $base
 done
 
-no_test_projects=(holo_control holo_gateway)
+# cmw
+cmw=(holo_cmw)
+echo "=======================> cmw <======================="
+set -e
+cd $cmw
+git checkout $branch
+git pull
+set +e
+mkdir build
+set -e
+cd build
+cmake ..
+make -j4
+cd $base
 
-for project in ${no_test_projects[@]}
-do
-    echo "=======================> $project <====================="
-    set +e
-    cd $project && git checkout master && git pull && mkdir build 
-    set -e
-    cd build && cmake .. && make
-    cd $base
-done
+echo "Done"
+
