@@ -352,47 +352,13 @@ let NERDTreeIgnore+=['.*\.out$']
 let NERDTreeIgnore+=['.*\.so$', '.*\.a$']
 let NERDTreeBookmarksFile='/home/l/.vim/NerdBookmarks'
 
-""""""""""""""""""""""""""""""
-" => bufExplorer plugin
-""""""""""""""""""""""""""""""
-let g:bufExplorerFindActive=1
-map <leader>o :BufExplorer<cr>
-let g:bufExplorerDefaultHelp=0       " Do not show default help.
-let g:bufExplorerShowRelativePath=1  " Show relative paths.
-let g:bufExplorerSortBy='mru'        " Sort by most recently used.
-let g:bufExplorerSplitRight=0        " Split left.
-let g:bufExplorerSplitVertical=1     " Split vertically.
-let g:bufExplorerSplitVertSize = 30  " Split width
-let g:bufExplorerUseCurrentWindow=1  " Open in new window.
-autocmd BufWinEnter \[Buf\ List\] setl nonumber
-
 " 注释插件
 map <f4> ,c<space>
 let NERDSpaceDelims=1       "让注释符与语句之间留一个空格
 let NERDCompactSexyComs=1   " 多行注释时样子更好看
 
-
 " snipMate
 let g:snips_trigger_key='<c-\>'
-
-"Tlist Configuration  taglist.vim
-" map <leader>t :TlistToggle<cr>
-" let Tlist_Process_File_Always=1     "Always Process File
-" let Tlist_Auto_Open=1              "Open Tlist when vim start
-" let Tlist_File_Fold_Auto_Close=1
-" let Tlist_Auto_Update=1
-" let Tlist_Compact_Format=1
-" let Tlist_Auto_Highlight_Tag=1
-" let Tlist_Show_One_File = 1 " Displaying tags for only one file~
-" let Tlist_Exit_OnlyWindow = 0 " if you are the last, kill yourself
-" let Tlist_Use_Right_Window = 2 " split to the right side of the screen
-" let Tlist_Sort_Type = "order" " sort by order or name
-" let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
-" let Tlist_GainFocus_On_ToggleOpen = 0 " Jump to taglist window on open.
-" let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
-" let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.
-" let Tlist_Enable_Fold_Column = 1 " Don't Show the fold indicator column in the taglist window.
-" let Tlist_WinWidth = 30
 
 map <leader>t :TagbarToggle<cr>
 
@@ -400,7 +366,7 @@ set nocscopeverbose
 
 " YouCompleteMe
 let g:ycm_confirm_extra_conf=0
-let g:ycm_global_ycm_extra_conf="/home/idl/.vim/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf="~/.ycm_extra_conf.py"
 let g:ycm_collect_identifiers_from_tags_files = 0
 
 " set tab width
