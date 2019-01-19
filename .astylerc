@@ -9,4 +9,5 @@
 --formatted
 --align-pointer=type
 --align-reference=type
+--indent-switches
 -Y
