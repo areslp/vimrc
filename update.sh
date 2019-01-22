@@ -16,8 +16,8 @@ set -e
 base=`pwd`
 echo $base
 
-block_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_calibration holo_localization holo_perception)
-root_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_parking holo_control holo_gateway holo_perception holo_planning_server)
+block_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_calibration holo_localization holo_perception holo_vis holo_simulator)
+root_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_parking holo_control holo_gateway holo_perception holo_planning_server holo_vis holo_simulator)
 
 # set target projects
 if [ $type -eq 0 ]; then
