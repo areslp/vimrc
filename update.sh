@@ -3,7 +3,7 @@
 # check input parameters
 if [ "$#" -ne 2 ]; then
     echo "illegal number of parameters !"
-    echo "sh update.sh [branch:parking_dev_v2] [server type:0(block),1(root)]"
+    echo "sh update.sh [branch:parking_dev_v2] [server type:0(block),1(root),2(pilot)]"
     exit -1
 fi
 
@@ -18,12 +18,15 @@ echo $base
 
 block_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_calibration holo_localization holo_perception holo_vis holo_simulator)
 root_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_parking holo_control holo_gateway holo_perception holo_planning_server holo_vis holo_simulator)
+pilot_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_localization holo_map holo_gateway holo_planning holo_control holo_perception holo_vis holo_simulator)
 
 # set target projects
 if [ $type -eq 0 ]; then
     projects=${block_projects[@]}
-else
+elif [ $type -eq 1 ]; then
     projects=${root_projects[@]}
+elif [ $type -eq 2 ]; then
+    projects=${pilot_projects[@]}
 fi
 
 echo "projects : " $projects
