@@ -16,9 +16,11 @@ set -e
 base=`pwd`
 echo $base
 
-block_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_calibration holo_localization holo_perception holo_vis holo_simulator)
-root_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_parking holo_control holo_gateway holo_perception holo_planning_server holo_vis holo_simulator)
-pilot_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_localization holo_map holo_gateway holo_planning holo_control holo_perception holo_vis holo_simulator)
+block_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_calibration holo_localization holo_perception)
+root_projects=(holo_base holo_3d holo_sensors holo_map holo_parking holo_perception holo_planning_server)
+pilot_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_localization holo_map holo_gateway holo_planning holo_control holo_perception)
+
+simulator_projects=(holo_vis holo_simulator)
 
 # set target projects
 if [ $type -eq 0 ]; then
@@ -46,8 +48,27 @@ do
     set -e
     cd build
     cmake ..
-    make -j4
+    make -j`nproc`
     sudo make install
+    cd $base
+done
+
+# update simulator projects, no install
+for project in ${simulator_projects[@]}
+do
+    echo "=======================> $project <====================="
+    set -e
+    cd $project
+    git fetch
+    git checkout $branch
+    git reset --hard origin/$branch
+    git pull
+    set +e
+    mkdir build
+    set -e
+    cd build
+    cmake ..
+    make -j`nproc`
     cd $base
 done
 
