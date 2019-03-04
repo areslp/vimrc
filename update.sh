@@ -16,9 +16,10 @@ set -e
 base=`pwd`
 echo $base
 
-block_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_calibration holo_localization holo_perception holo_vis holo_simulator)
-root_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_map holo_parking holo_control holo_gateway holo_perception holo_planning_server holo_vis holo_simulator)
-pilot_projects=(holo_base holo_3d holo_sensors holo_data_provider holo_localization holo_map holo_gateway holo_planning holo_control holo_perception holo_vis holo_simulator)
+base_projects=(holo_base holo_3d holo_sensors holo_cmw)
+block_projects=(holo_data_provider holo_map holo_calibration holo_localization holo_perception holo_vis holo_simulator)
+root_projects=(holo_data_provider holo_map holo_parking holo_control holo_gateway holo_perception holo_planning_server holo_vis holo_simulator)
+pilot_projects=(holo_data_provider holo_localization holo_map holo_gateway holo_planning holo_control holo_perception holo_vis holo_simulator)
 
 # set target projects
 if [ $type -eq 0 ]; then
@@ -29,9 +30,34 @@ elif [ $type -eq 2 ]; then
     projects=${pilot_projects[@]}
 fi
 
-echo "projects : " $projects
+# update base projects
+echo "base projects : " $base_projects
+for project in ${base_projects[@]}
+do
+    echo "=======================> $project <====================="
+    set -e
+    cd $project
+    git fetch
+    git checkout $branch
+    git reset --hard origin/$branch
+    git pull
+    set +e
+    mkdir build
+    set -e
+    cd build
+    cmake ..
+    make -j4
+    if [ "$project" = "holo_cmw" ]; then
+        sudo -E PYTHONPATH=$PYTHONPATH make install
+    else
+        sudo make install
+    fi
+    cd $base
+done
 
 # update target projects
+echo "target projects : " $projects
+
 for project in ${projects[@]}
 do
     echo "=======================> $project <====================="
@@ -51,20 +77,4 @@ do
     cd $base
 done
 
-# cmw
-cmw=(holo_cmw)
-echo "=======================> cmw <======================="
-set -e
-cd $cmw
-git checkout $branch
-git pull
-set +e
-mkdir build
-set -e
-cd build
-cmake ..
-make -j4
-cd $base
-
 echo "Done"
-
