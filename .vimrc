@@ -12,6 +12,8 @@ Bundle "Valloric/YouCompleteMe"
 Bundle "vim-scripts/sudo.vim"
 Bundle "Chiel92/vim-autoformat"
 Bundle "vim-scripts/DoxygenToolkit.vim"
+Bundle "roxma/vim-hug-neovim-rpc"
+Bundle "roxma/nvim-yarp"
 Bundle "Shougo/denite.nvim"
 filetype indent plugin on
 
