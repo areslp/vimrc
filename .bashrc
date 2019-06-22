@@ -128,7 +128,7 @@ export PATH=$HOME/bin:$PATH
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-source /opt/ros/kinetic/setup.bash
+source /opt/ros/melodic/setup.bash
 
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
