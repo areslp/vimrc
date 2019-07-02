@@ -142,3 +142,9 @@ function parse_git_branch {
 }
 
 export PS1='\u@\h:\w\[\e[1;36m\]$(parse_git_branch)\[\e[0m\]$ '
+
+RAW_PATH=$PATH
+alias conda_open='export PATH=/home/ubuntu/anaconda3/bin:$PATH'
+alias conda_close='export PATH=$RAW_PATH'
+
+alias python='python3'
