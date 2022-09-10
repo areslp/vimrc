@@ -7,6 +7,8 @@ local map = vim.api.nvim_set_keymap
 local opt = {noremap = true, silent = true }
 
 -- neovim
+map("n", "<leader>s", ":tabnew|0r!grep -n  #<Left><Left>", opt)
+-- nnoremap <key> :tabnew\|0r!grep -n  #<Left><Left>
 
 -- fast saving
 map("n", "<leader>w", ":w!<cr>", opt)
