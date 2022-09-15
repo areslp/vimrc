@@ -1,3 +1,7 @@
+" Color
+set background=dark
+colors peaksea
+
 " Basic
 lua require('basic')
 
