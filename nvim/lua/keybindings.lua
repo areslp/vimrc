@@ -12,7 +12,7 @@ map("n", "<leader>s", ":tabnew|0r!rg -n  #<Left><Left>", opt)
 
 -- fast saving
 map("n", "<leader>w", ":w!<cr>", opt)
-map("n", "<leader>q", ":q<cr>", opt)
+map("n", "<leader>q", ":q!<cr>", opt)
 
 -- fast editing of the .vimrc
 map("n", "<leader>ee", ":e! ~/.vimrc<cr>", opt)
