@@ -84,6 +84,16 @@ _G.packer_plugins = {
     path = "/Users/l/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/Users/l/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/Users/l/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/l/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -114,6 +124,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/l/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["symbols-outline.nvim"] = {
+    loaded = true,
+    path = "/Users/l/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
+    url = "https://github.com/simrat39/symbols-outline.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,

@@ -44,3 +44,6 @@ map("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", opt)
 
 -- nvim-tree
 map('n', '<leader>f', ':NvimTreeToggle<cr>', opt)
+
+--symbols-outline
+map('n', '<leader>t', '::SymbolsOutline<cr>', opt)

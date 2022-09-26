@@ -131,3 +131,24 @@ require("nvim-tree").setup({
     timeout = 400,
   },
 })
+
+-- nvim-lsp-installer --
+require("nvim-lsp-installer").setup({
+  automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗"
+    }
+  }
+})
+
+-- nvim-lspconfig --
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.cmake.setup{}
+require'lspconfig'.sumneko_lua.setup{}
+
+-- symbols-outline --
+require("symbols-outline").setup()
