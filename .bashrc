@@ -56,10 +56,13 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+source ~/gitstatus/gitstatus.prompt.sh
+# PS1='\w ${GITSTATUS_PROMPT}\n\$ ' # directory followed by git status and $/# (normal/root)
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\033[0;32m(${GITSTATUS_PROMPT})\033[0m\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w(${GITSTATUS_PROMPT})\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -116,25 +119,24 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias ..='cd ..'
-export PATH=$HOME/bin:$PATH
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/l/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/l/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/l/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/l/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-export PATH=/usr/local/cuda/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
-function parse_git_dirty {
-      [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
-}
+# ---AND--- 
 
-function parse_git_branch {
-      git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
-}
-
-export PS1='\u@\h:\w\[\e[1;36m\]$(parse_git_branch)\[\e[0m\]$ '
-RAW_PATH=$PATH
-alias conda_open='export PATH=${HOME}/anaconda3/bin:$PATH'
-alias conda_close='export PATH=$RAW_PATH'
-alias python='python3'
