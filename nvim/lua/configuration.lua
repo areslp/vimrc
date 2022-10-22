@@ -152,3 +152,16 @@ require'lspconfig'.sumneko_lua.setup{}
 
 -- symbols-outline --
 require("symbols-outline").setup()
+
+-- coc --
+vim.g.coc_global_extensions = {
+  'coc-json',
+  'coc-git',
+  'coc-lua',
+  'coc-clangd',
+  'coc-pyright',
+  'coc-sh',
+  'coc-vimlsp',
+  'coc-yaml',
+}
+
